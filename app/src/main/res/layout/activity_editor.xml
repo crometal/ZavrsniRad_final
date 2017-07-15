@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".EditorActivity"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- NAME category-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label NAME -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Name"/>
+
+        <!-- Input field for NAME-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <!-- NAME field-->
+            <EditText
+                style="@style/EditorFieldStyle"
+                android:id="@+id/edit_foodName"
+                android:hint="Enter food name here"
+                android:inputType="textCapWords"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- FAT CATEGORY-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label FAT-->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Fat"/>
+
+        <!-- Input fields for FAT-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <!-- FAT fields-->
+            <EditText
+                style="@style/EditorFieldStyle"
+                android:id="@+id/edit_fatTotal"
+                android:hint="Total"
+                android:inputType="numberDecimal"/>
+
+
+            <EditText
+                style="@style/EditorFieldStyle"
+                android:id="@+id/edit_FatOmega3"
+                android:hint="Omega 3"
+                android:inputType="numberDecimal"/>
+
+            <EditText
+                style="@style/EditorFieldStyle"
+                android:id="@+id/edit_FatOmega6"
+                android:hint="Omega 6"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- PROTEINS Category-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label FAT-->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Protein"/>
+
+        <!-- Input field for PROTEINS-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <EditText
+                style="@style/EditorFieldStyle"
+                android:id="@+id/edit_Proteins"
+                android:hint="Total proteins"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- CARBO Category-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label CARBO-->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Carbohydrate" />
+
+        <!-- Input field for CARBO-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edit_Carbohydrates"
+                style="@style/EditorFieldStyle"
+                android:hint="Total carbohydrates"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- FIBER Category-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label FIBER-->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Fiber"/>
+
+        <!-- Input field for FIBER-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <EditText
+                style="@style/EditorFieldStyle"
+                android:id="@+id/edit_fiber"
+                android:hint="Total fibers"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ENERGY Category-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label ENERGY-->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Energy"/>
+
+        <!-- Input field for ENERGY-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/edit_Energy"
+                android:fontFamily="sans-serif-light"
+                android:hint="Total energy"
+                android:inputType="number"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp">
+
+        <EditText
+            android:inputType="numberDecimal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/edit_ConvertValue"
+            android:hint="Unesi energetsku vrijednost"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_ConvertValue"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:id="@+id/radioKJ2KCAL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iz kJ u kcal"
+            android:checked="false"/>
+
+        <RadioButton
+            android:id="@+id/radioKCAL2KJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iz kcal u kJ"
+            android:checked="false"/>
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btnConvert"
+            android:onClick="convert"
+            android:text="Pretvori"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
