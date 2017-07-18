@@ -78,28 +78,43 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodViewHolder>{
 
         final EditText nameField = (EditText)subView.findViewById(R.id.enter_name);
         final EditText fatField = (EditText)subView.findViewById(R.id.enter_fat);
+        final EditText omega3Field = (EditText)subView.findViewById(R.id.enter_omega3);
+        final EditText omega6Field = (EditText)subView.findViewById(R.id.enter_omega6);
+        final EditText proteinsField = (EditText)subView.findViewById(R.id.enter_proteins);
+        final EditText carboField = (EditText)subView.findViewById(R.id.enter_carbo);
+        final EditText energyField = (EditText)subView.findViewById(R.id.enter_energy);
 
         if(food != null){
             nameField.setText(food.getName());
             fatField.setText(String.valueOf(food.getFat()));
+            omega3Field.setText(String.valueOf(food.getOmega3()));
+            omega6Field.setText(String.valueOf(food.getOmega6()));
+            proteinsField.setText(String.valueOf(food.getProteins()));
+            carboField.setText(String.valueOf(food.getCarbo()));
+            energyField.setText(String.valueOf(food.getEnergy()));
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Edit product");
+        builder.setTitle("Uredi namirnicu");
         builder.setView(subView);
         builder.create();
 
-        builder.setPositiveButton("EDIT PRODUCT", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("UREDI", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 final String name = nameField.getText().toString();
                 final double fat = Double.parseDouble(fatField.getText().toString());
+                final double omega3 = Double.parseDouble(omega3Field.getText().toString());
+                final double omega6 = Double.parseDouble(omega6Field.getText().toString());
+                final double proteins = Double.parseDouble(proteinsField.getText().toString());
+                final double carbo = Double.parseDouble(carboField.getText().toString());
+                final double energy = Double.parseDouble(energyField.getText().toString());
 
                 if(TextUtils.isEmpty(name) || fat <= 0){
-                    Toast.makeText(context, "Something went wrong. Check your input values", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Došlo je do pogreške. Provjeri unesene vrijednosti.", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    mDatabase.updateFood(new Food(food.getId(), name, fat));
+                    mDatabase.updateFood(new Food(food.getId(), name, fat, omega3, omega6, proteins, carbo, energy));
                     //refresh the activity
                     ((Activity)context).finish();
                     context.startActivity(((Activity)context).getIntent());
@@ -107,10 +122,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodViewHolder>{
             }
         });
 
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("ODUSTANI", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(context, "Task cancelled", Toast.LENGTH_LONG).show();
+              //  Toast.makeText(context, "", Toast.LENGTH_LONG).show();
             }
         });
         builder.show();

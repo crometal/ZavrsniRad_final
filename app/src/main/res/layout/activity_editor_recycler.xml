@@ -2,30 +2,83 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:padding="4dp"
     android:orientation="vertical">
 
     <EditText
         android:id="@+id/enter_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Unesi ime"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Ime namirnice"
         android:inputType="text"
         android:maxLines="1"
-        android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp"
         android:padding="12dp"/>
 
     <EditText
         android:id="@+id/enter_fat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Unesi masnoću"
-        android:layout_marginTop="24dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Ukupna masnoća"
         android:inputType="numberDecimal"
         android:maxLines="1"
         android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp"
+        android:padding="12dp"/>
+
+    <EditText
+        android:id="@+id/enter_omega3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Omega3"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"/>
+
+    <EditText
+        android:id="@+id/enter_omega6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Omega6"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"/>
+
+    <EditText
+        android:id="@+id/enter_proteins"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Proteini"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"/>
+
+    <EditText
+        android:id="@+id/enter_carbo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Ugljikohidrati"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"/>
+
+    <EditText
+        android:id="@+id/enter_energy"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Energija (kcal)"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:layout_marginRight="8dp"
         android:padding="12dp"/>
 
 </LinearLayout>

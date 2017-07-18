@@ -38,6 +38,7 @@ public final class FoodContract {
         public final static String COLUMN_CARBOHYDRATES = "carbohydrates_total";
   //      public final static String COLUMN_FIBERS = "fibers";
         public final static String COLUMN_ENERGY = "energy";
+        public final static String COLUMN_GRAM = "gram";
 
         public final static String _ID_MENU = BaseColumns._ID;
         public final static String TABLE_NAME_MENU = "menu";

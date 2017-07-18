@@ -16,7 +16,7 @@ public class FoodDbHelper extends SQLiteOpenHelper {
 
     public static final String LOG_TAG = FoodDbHelper.class.getSimpleName();
     private static final String DATABASE_NAME = "foodlist.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 10;
 
     public FoodDbHelper (Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,14 +35,16 @@ public class FoodDbHelper extends SQLiteOpenHelper {
                 + FoodEntry.COLUMN_PROTEINS + " DECIMAL(3,1), "
                 + FoodEntry.COLUMN_CARBOHYDRATES + " DECIMAL(3,1), "
             //    + FoodEntry.COLUMN_FIBERS + " DECIMAL(3,1), "
-                + FoodEntry.COLUMN_ENERGY + " INTEGER);";
-
-
+                + FoodEntry.COLUMN_ENERGY + " DECIMAL(3,1)" +")";
         db.execSQL(SQL_CREATE_FOOD_TABLE);
 
-
-
-
+        String SQL_CREATE_MENU_TABLE = "CREATE TABLE " + FoodEntry.TABLE_NAME_MENU + " ("
+                +FoodEntry._ID_MENU + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                +FoodEntry.COLUMN_BREAKFAST + " DECIMAL(3,1),"
+                +FoodEntry.COLUMN_LUNCH + " DECIMAL(3,1),"
+                +FoodEntry.COLUMN_DINNER + " DECIMAL(3,1),"
+                +FoodEntry.COLUMN_GRAM + " DECIMAL(3,1)" +")";
+        db.execSQL(SQL_CREATE_MENU_TABLE);
 
 
     }
@@ -63,12 +65,24 @@ public class FoodDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(FoodEntry.COLUMN_FOOD_NAME, food.getName());
         values.put(FoodEntry.COLUMN_FAT_TOTAL, food.getFat());
+        values.put(FoodEntry.COLUMN_OMEGA3, food.getOmega3());
+        values.put(FoodEntry.COLUMN_OMEGA6, food.getOmega6());
+        values.put(FoodEntry.COLUMN_PROTEINS, food.getProteins());
+        values.put(FoodEntry.COLUMN_CARBOHYDRATES, food.getCarbo());
+        values.put(FoodEntry.COLUMN_ENERGY, food.getEnergy());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(FoodEntry.TABLE_NAME, values, FoodEntry._ID	+ "	= ?", new String[] { String.valueOf(food.getId())});
     }
 
+    public void updateGram(Food food){
+        ContentValues values = new ContentValues();
+        values.put(FoodEntry.COLUMN_GRAM, food.getGram());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(FoodEntry.TABLE_NAME_MENU, values, FoodEntry._ID + " =?", new String[] {String.valueOf(food.getId())});
+    }
+
     public List<Food> listFood(){
-        String sql = "select * from " + FoodEntry.TABLE_NAME;
+        String sql = "SELECT * FROM " + FoodEntry.TABLE_NAME + " ORDER BY " +FoodEntry.COLUMN_FOOD_NAME + " ASC";
         SQLiteDatabase db = this.getReadableDatabase();
         List<Food> storeProducts = new ArrayList<>();
         Cursor cursor = db.rawQuery(sql, null);
@@ -77,7 +91,12 @@ public class FoodDbHelper extends SQLiteOpenHelper {
                 int id = Integer.parseInt(cursor.getString(0));
                 String name = cursor.getString(1);
                 double fat = Double.parseDouble(cursor.getString(2));
-                storeProducts.add(new Food(id, name, fat));
+                double omega3 = Double.parseDouble(cursor.getString(3));
+                double omega6 = Double.parseDouble(cursor.getString(4));
+                double proteins = Double.parseDouble(cursor.getString(5));
+                double carbo = Double.parseDouble(cursor.getString(6));
+                double energy = Double.parseDouble(cursor.getString(7));
+                storeProducts.add(new Food(id, name, fat, omega3, omega6, proteins, carbo, energy));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -88,6 +107,11 @@ public class FoodDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(FoodEntry.COLUMN_FOOD_NAME, food.getName());
         values.put(FoodEntry.COLUMN_FAT_TOTAL, food.getFat());
+        values.put(FoodEntry.COLUMN_OMEGA3, food.getOmega3());
+        values.put(FoodEntry.COLUMN_OMEGA6, food.getOmega6());
+        values.put(FoodEntry.COLUMN_PROTEINS, food.getProteins());
+        values.put(FoodEntry.COLUMN_CARBOHYDRATES, food.getCarbo());
+        values.put(FoodEntry.COLUMN_ENERGY, food.getEnergy());
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(FoodEntry.TABLE_NAME, null, values);
     }
