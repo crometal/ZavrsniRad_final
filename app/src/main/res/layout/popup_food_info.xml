@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp">
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Ime:"/>
+
+        <TextView
+            android:id="@+id/tvShowName"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textViewName"
+            android:textSize="18dp" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:id="@+id/textViewFat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ukupne masnoće:"
+            android:textSize="18dp"
+            android:layout_below="@+id/textViewName"/>
+
+        <TextView
+            android:id="@+id/tvShowFat"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewName"
+            android:layout_toRightOf="@+id/textViewFat"
+            android:textSize="18dp"
+            android:text="hahaha"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:id="@+id/textViewOmega3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Omega 3:"
+            android:textSize="18dp"
+            android:layout_below="@+id/textViewFat"/>
+
+        <TextView
+            android:id="@+id/tvShowOmega3"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewFat"
+            android:layout_toRightOf="@+id/textViewOmega3"
+            android:textSize="18dp"
+            android:text="hahaha"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:id="@+id/textViewOmega6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Omega 6:"
+            android:textSize="18dp"
+            android:layout_below="@+id/textViewOmega3"/>
+
+        <TextView
+            android:id="@+id/tvShowOmega6"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewOmega3"
+            android:layout_toRightOf="@+id/textViewOmega6"
+            android:textSize="18dp"
+            android:text="hahaha"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:id="@+id/textViewProteins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Proteini:"
+            android:textSize="18dp"
+            android:layout_below="@+id/textViewOmega6"/>
+
+        <TextView
+            android:id="@+id/tvShowProteins"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewOmega6"
+            android:layout_toRightOf="@+id/textViewProteins"
+            android:textSize="18dp"
+            android:text="hahaha"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:id="@+id/textViewCarbo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ugljikohidrati:"
+            android:textSize="18dp"
+            android:layout_below="@+id/textViewProteins"/>
+
+        <TextView
+            android:id="@+id/tvShowCarbo"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewProteins"
+            android:layout_toRightOf="@+id/textViewCarbo"
+            android:textSize="18dp"
+            android:text="hahaha"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:id="@+id/textViewEnergy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Energija:"
+            android:textSize="18dp"
+            android:layout_below="@+id/textViewCarbo"/>
+
+        <TextView
+            android:id="@+id/tvShowEnergy"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewCarbo"
+            android:layout_toRightOf="@+id/textViewEnergy"
+            android:textSize="18dp"
+            android:text="hahaha"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

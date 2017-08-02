@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.example.stjepan.zavrsnirad_v1.data.Food;
 import com.example.stjepan.zavrsnirad_v1.data.FoodAdapter;
+import com.example.stjepan.zavrsnirad_v1.data.FoodContract;
 import com.example.stjepan.zavrsnirad_v1.data.FoodDbHelper;
 
 import java.util.List;
@@ -45,6 +46,7 @@ public class FoodListActivity extends AppCompatActivity/* implements LoaderManag
 
     private final static String TAG= FoodListActivity.class.getName().toString();
     private FoodDbHelper mDatabase;
+    SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,8 @@ public class FoodListActivity extends AppCompatActivity/* implements LoaderManag
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         productView.setLayoutManager(linearLayoutManager);
         productView.setHasFixedSize(true);
+
+
 
         mDatabase = new FoodDbHelper(this);
         List<Food> allFood = mDatabase.listFood();
@@ -70,7 +74,6 @@ public class FoodListActivity extends AppCompatActivity/* implements LoaderManag
             Toast.makeText(this, "There is no product in the database. Start adding now", Toast.LENGTH_LONG).show();
         }
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,29 +83,6 @@ public class FoodListActivity extends AppCompatActivity/* implements LoaderManag
                 addTaskDialog();
             }
         });
-
-
-       //ListView foodListView = (ListView) findViewById(R.id.list);
-       // View emptyView = findViewById(R.id.empty_view);
-       // foodListView.setEmptyView(emptyView);
-
-        //Setup an adapter to create a list item for each row of food data in the cursor
-       /* foodCursorAdapter = new FoodCursorAdapter(this, null);
-        foodListView.setAdapter(foodCursorAdapter);
-
-        foodListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent = new Intent(FoodListActivity.this, EditorActivity.class);
-
-                Uri currentFoodUri = ContentUris.withAppendedId(FoodEntry.CONTENT_URI, id);
-                intent.setData(currentFoodUri);
-                startActivity(intent);
-            }
-        });
-
-        getLoaderManager().initLoader(FOOD_LOADER, null, this);
-*/
     }
 
     private void addTaskDialog(){
@@ -141,7 +121,6 @@ public class FoodListActivity extends AppCompatActivity/* implements LoaderManag
                     Food newFood = new Food(name, fat, omega3, omega6, proteins, carbo, energy);
                     mDatabase.addFood(newFood);
 
-                    //refresh the activity
                     finish();
                     startActivity(getIntent());
                 }
@@ -164,6 +143,8 @@ public class FoodListActivity extends AppCompatActivity/* implements LoaderManag
             mDatabase.close();
         }
     }
+
+
 
 /*
     @Override

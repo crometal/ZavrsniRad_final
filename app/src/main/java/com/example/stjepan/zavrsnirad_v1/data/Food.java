@@ -8,7 +8,7 @@ public class Food {
     private int id;
     private String name;
     private double fat, omega3, omega6, proteins, carbo, energy, gram;
-    boolean selected;
+    boolean selected = false;
 
     public Food (String name, double fat, double omega3, double omega6, double proteins, double carbo, double energy){
         this.name = name;
@@ -31,20 +31,24 @@ public class Food {
         this.energy = energy;
     }
 
-    public Food (int id, double gram){
+    public Food (int id,  double gram){
         this.id = id;
         this.gram = gram;
     }
 
-    public Food(int id, String name, double fat){
+    public Food (int id, String name, double fat, double omega3, double omega6, double proteins, double carbo, double energy, double gram){
         this.id = id;
         this.name = name;
         this.fat = fat;
+        this.omega3 = omega3;
+        this.omega6 = omega6;
+        this.proteins = proteins;
+        this.carbo = carbo;
+        this.energy = energy;
+        this.gram = gram;
     }
 
-    public boolean isSelected(){
-        return selected;
-    }
+
 
     public int getId() {
         return id;
@@ -116,5 +120,13 @@ public class Food {
 
     public void setGram(double gram) {
         this.gram = gram;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public boolean isSelected(){
+        return selected;
     }
 }

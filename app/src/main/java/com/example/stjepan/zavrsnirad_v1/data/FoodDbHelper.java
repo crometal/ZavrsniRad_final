@@ -12,6 +12,9 @@ import com.example.stjepan.zavrsnirad_v1.data.FoodContract.FoodEntry;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.id;
+import static android.R.attr.thickness;
+
 public class FoodDbHelper extends SQLiteOpenHelper {
 
     public static final String LOG_TAG = FoodDbHelper.class.getSimpleName();
@@ -56,10 +59,13 @@ public class FoodDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
+
     public void deleteFood(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(FoodEntry.TABLE_NAME, FoodEntry._ID	+ "	= ?", new String[] { String.valueOf(id)});
     }
+
 
     public void updateFood(Food food){
         ContentValues values = new ContentValues();
@@ -78,7 +84,7 @@ public class FoodDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(FoodEntry.COLUMN_GRAM, food.getGram());
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(FoodEntry.TABLE_NAME_MENU, values, FoodEntry._ID + " =?", new String[] {String.valueOf(food.getId())});
+        db.update(FoodEntry.TABLE_NAME_MENU, values, FoodEntry._ID_MENU + " =?", new String[] {String.valueOf(food.getId())});
     }
 
     public List<Food> listFood(){
@@ -102,6 +108,23 @@ public class FoodDbHelper extends SQLiteOpenHelper {
         cursor.close();
         return storeProducts;
     }
+
+    public List<Food> listGram(){
+        String sql = "SELECT " +FoodEntry._ID_MENU + " , " +FoodEntry.COLUMN_GRAM + " FROM " +FoodEntry.TABLE_NAME_MENU;
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Food> storeGram = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()){
+            do {
+                int id = Integer.parseInt(cursor.getString(0));
+                double gram = Double.parseDouble(cursor.getString(1));
+                storeGram.add(new Food(id, gram));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return storeGram;
+    }
+
 
     public void addFood(Food food){
         ContentValues values = new ContentValues();

@@ -3,6 +3,7 @@ package com.example.stjepan.zavrsnirad_v1.data;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -64,6 +65,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodViewHolder>{
                 context.startActivity(((Activity) context).getIntent());
             }
         });
+
     }
 
     @Override

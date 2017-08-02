@@ -130,7 +130,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         values.put(FoodEntry.COLUMN_OMEGA3, fatOmega3String);
         values.put(FoodEntry.COLUMN_OMEGA6, fatOmega6String);
         values.put(FoodEntry.COLUMN_PROTEINS, proteinsString);
-  //      values.put(FoodEntry.COLUMN_CARBOHYDRATES, carbohydratesString);
+        values.put(FoodEntry.COLUMN_CARBOHYDRATES, carbohydratesString);
       //  values.put(FoodEntry.COLUMN_FIBERS, fibersString);
         values.put(FoodEntry.COLUMN_ENERGY, energyString);
 
@@ -241,7 +241,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 FoodEntry.COLUMN_OMEGA3,
                 FoodEntry.COLUMN_OMEGA6,
                 FoodEntry.COLUMN_PROTEINS,
-              //  FoodEntry.COLUMN_FIBERS,
+                FoodEntry.COLUMN_CARBOHYDRATES,
                 FoodEntry.COLUMN_ENERGY
 
         };
@@ -260,7 +260,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             double omega3ColumnIndex = cursor.getColumnIndex(FoodEntry.COLUMN_OMEGA3);
             double omega6ColumnIndex = cursor.getColumnIndex(FoodEntry.COLUMN_OMEGA6);
             double proteinsColumnIndex = cursor.getColumnIndex(FoodEntry.COLUMN_PROTEINS);
-            //double carboColumnIndex = cursor.getColumnIndex(FoodEntry.COLUMN_CARBOHYDRATES);
+            double carboColumnIndex = cursor.getColumnIndex(FoodEntry.COLUMN_CARBOHYDRATES);
            // double fibersColumnIndex = cursor.getColumnIndex(FoodEntry.COLUMN_FIBERS);
             int energyColumnIndex = cursor.getColumnIndex(FoodEntry.COLUMN_ENERGY);
 
@@ -269,7 +269,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             double omega3 = cursor.getDouble ((int) omega3ColumnIndex);
             double omega6 = cursor.getDouble((int)omega6ColumnIndex);
             double proteins = cursor.getDouble((int)proteinsColumnIndex);
-            //double carbo = cursor.getDouble((int)carboColumnIndex);
+            double carbo = cursor.getDouble((int)carboColumnIndex);
           //  double fibers = cursor.getDouble((int)fibersColumnIndex);
             int energy = cursor.getInt ((energyColumnIndex));
 
@@ -278,7 +278,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             fatO3EditText.setText(Double.toString(omega3));
             fatO6EditText.setText(Double.toString(omega6));
             proteinEditText.setText(Double.toString(proteins));
-          //  carboEditText.setText(Double.toString(carbo));
+            carboEditText.setText(Double.toString(carbo));
            // fiberEditText.setText(Double.toString(fibers));
             energyEditText.setText(Integer.toString(energy));
 
