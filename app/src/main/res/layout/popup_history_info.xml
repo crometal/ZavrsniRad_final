@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:textSize="18dp"
+            android:text="Obrok: "
+            android:id="@+id/textViewObrok"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textViewObrok"
+            android:layout_margin="8dp"
+            android:textSize="18dp"
+            android:id="@+id/textViewShowObrok"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_margin="8dp"
+            android:text="Ukupne masnoće: "
+            android:layout_below="@+id/textViewObrok"
+            android:id="@+id/textViewFatGram"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewShowObrok"
+            android:layout_toRightOf="@+id/textViewFatGram"
+            android:layout_margin="8dp"
+            android:textSize="18dp"
+            android:id="@+id/textViewShowFatGram"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textViewShowFatGram"
+            android:layout_below="@+id/textViewShowObrok"
+            android:layout_margin="8dp"
+            android:textSize="18dp"
+            android:text="g"/>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

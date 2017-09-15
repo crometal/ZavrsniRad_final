@@ -17,7 +17,7 @@ public final class FoodContract {
 
     public static final String PATH_FOOD = "food";
 
-    public static final class FoodEntry implements BaseColumns{
+    public static final class FoodEntry /*implements BaseColumns*/{
 
         /** The content URI to access the food data in the provider */
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_FOOD);
@@ -26,9 +26,9 @@ public final class FoodContract {
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FOOD;
 
         public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FOOD;
+               ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FOOD;
 
-        public final static String _ID = BaseColumns._ID;
+        public final static String _ID_FOODS = "id_foods";
         public final static String TABLE_NAME = "foods";
         public final static String COLUMN_FOOD_NAME = "name";
         public final static String COLUMN_FAT_TOTAL = "fat_total";
@@ -36,15 +36,25 @@ public final class FoodContract {
         public final static String COLUMN_OMEGA6 = "omega6";
         public final static String COLUMN_PROTEINS = "proteins_total";
         public final static String COLUMN_CARBOHYDRATES = "carbohydrates_total";
-  //      public final static String COLUMN_FIBERS = "fibers";
         public final static String COLUMN_ENERGY = "energy";
-        public final static String COLUMN_GRAM = "gram";
 
-        public final static String _ID_MENU = BaseColumns._ID;
+        public final static String TABLE_NAME_HELPER = "help_table";
+        public final static String _ID_HELPER = "id_helper";
+        public final static String FOREIGN_FOODS_ID = "fk_foods_id";
+        public final static String FOREIGN_MENU_ID = "fk_menu_id";
+        public final static String COLUMN_GRAM = "gram";
+        public final static String COLUMN_GRAM_TOTAL = "gram_total";
+
         public final static String TABLE_NAME_MENU = "menu";
-        public final static String COLUMN_BREAKFAST = "breakfast";
-        public final static String COLUMN_LUNCH = "lunch";
-        public final static String COLUMN_DINNER = "dinner";
+        public final static String _ID_MENU = "id_menu";
+        public final static String FOOD_TIME = "drv";
+
+        public final static String TABLE_NAME_MENU_TOTAL = "menu_total";
+        public final static String _ID_MENU_TOTAL = "id_menu_total";
+        public final static String COLUMN_BREAKFAST = "Doručak";
+        public final static String COLUMN_LUNCH = "Ručak";
+        public final static String COLUMN_DINNER = "Večera";
+        public final static String COLUMN_DATE = "date";
     }
 }
 

@@ -18,8 +18,10 @@
 
         <Button
             android:text="Doručak"
+            android:textAllCaps="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16dp"
             android:id="@+id/btnBreakfast"/>
     </LinearLayout>
 
@@ -30,10 +32,12 @@
         android:gravity="center">
 
         <Button
-            android:text="Ručak"
+            android:id="@+id/btnLunch"
+            android:textAllCaps="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnLunch"/>
+            android:text="Ručak"
+            android:textSize="16dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,6 +49,8 @@
 
         <Button
             android:text="Večera"
+            android:textAllCaps="false"
+            android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnDinner"/>

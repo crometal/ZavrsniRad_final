@@ -17,9 +17,12 @@
         android:gravity="center">
 
         <Button
-            android:text="@string/menu"
+            android:theme="@style/MyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Menu"
+            android:textSize="16dp"
+            android:textAllCaps="false"
             android:id="@+id/btnMenu"/>
     </LinearLayout>
 
@@ -30,10 +33,13 @@
         android:gravity="center">
 
         <Button
+            android:theme="@style/MyButton"
             android:layout_below="@+id/btnMenu"
-            android:text="@string/list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Popis namirnica"
+            android:textAllCaps="false"
+            android:textSize="16dp"
             android:id="@+id/btnList"/>
     </LinearLayout>
 
@@ -44,10 +50,13 @@
         android:gravity="center">
 
         <Button
+            android:theme="@style/MyButton"
             android:layout_below="@+id/btnList"
-            android:text="@string/history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textSize="16dp"
+            android:text="Povijest"
             android:id="@+id/btnHistory"/>
     </LinearLayout>
 

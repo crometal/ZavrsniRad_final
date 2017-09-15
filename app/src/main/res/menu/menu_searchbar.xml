@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.stjepan.zavrsnirad_v1.FoodListActivity">
 
     <item
-        android:id="@+id/search"
+        android:id="@+id/menu_search"
         android:hint="Pretraži namirnice"
         android:icon="@drawable/abc_ic_search_api_material"
-        app:showAsAction="collapseActionView|ifRoom"
+        app:showAsAction="collapseActionView|always"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        android:title="Search" />
+        android:title="Traži..." />
 </menu>

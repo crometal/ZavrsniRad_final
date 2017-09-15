@@ -1,15 +1,22 @@
 package com.example.stjepan.zavrsnirad_v1.menu;
 
-import android.content.ContentValues;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -19,12 +26,15 @@ import android.widget.Toast;
 import com.example.stjepan.zavrsnirad_v1.R;
 import com.example.stjepan.zavrsnirad_v1.TotalActivity;
 import com.example.stjepan.zavrsnirad_v1.data.Food;
-import com.example.stjepan.zavrsnirad_v1.data.FoodContract;
 import com.example.stjepan.zavrsnirad_v1.data.FoodDbHelper;
+import com.example.stjepan.zavrsnirad_v1.models.GramHelp;
 
-import org.w3c.dom.Text;
-
+import java.io.BufferedReader;
+import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -34,87 +44,98 @@ public class BreakfastActivity extends AppCompatActivity implements MenuAdapter.
     private FloatingActionButton fab;
     MenuAdapter mAdapter;
     List<Food> allFood = new ArrayList<>();
+    List<GramHelp> selectedFood = new ArrayList<>();
+    int value;
+    RecyclerView productView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breakfast);
 
-        FrameLayout fLayout = (FrameLayout) findViewById(R.id.activity_to_do);
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        RecyclerView foodViewRecycler = (RecyclerView) findViewById(R.id.menu_recycler_list);
+        productView = (RecyclerView) findViewById(R.id.menu_recycler_list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        foodViewRecycler.setLayoutManager(linearLayoutManager);
-        foodViewRecycler.setHasFixedSize(true);
+        productView.setLayoutManager(linearLayoutManager);
+        productView.setHasFixedSize(true);
+
+        Intent intent = getIntent();
+        value = intent.getIntExtra("breakfast", -1);
 
         mDatabase = new FoodDbHelper(this);
-        allFood.clear();
         allFood = mDatabase.listFood();
 
         if (allFood.size() > 0) {
-            foodViewRecycler.setVisibility(View.VISIBLE);
+            productView.setVisibility(View.VISIBLE);
             mAdapter = new MenuAdapter(this, allFood, this);
-            foodViewRecycler.setAdapter(mAdapter);
-
+            productView.setAdapter(mAdapter);
         } else {
-            foodViewRecycler.setVisibility(View.GONE);
-            //Toast.makeText(this, "There is no product in the database. ", Toast.LENGTH_LONG).show();
+            productView.setVisibility(View.GONE);
         }
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BreakfastActivity.this, TotalActivity.class);
-                startActivity(intent);
-
-
-
+                if (selectedFood.size() == 0) {
+                    Toast.makeText(BreakfastActivity.this, "Nisi odabrao namirnicu", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(BreakfastActivity.this, TotalActivity.class);
+                    intent.putExtra("valueBreakfast", value);
+                    intent.putExtra("selectedFood", (ArrayList<GramHelp>) selectedFood);
+                    startActivity(intent);
+                }
             }
         });
     }
-/*
-    private void popupInfo (final Food food, final int position){
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View subView = inflater.inflate(R.layout.popup_food_info, null);
 
-        final TextView displayName = (TextView) findViewById(R.id.tvShowName);
-        final TextView displayFat = (TextView) findViewById(R.id.tvShowFat);
-        final TextView displayOmega3 = (TextView) findViewById(R.id.tvShowOmega3);
-        final TextView displayOmega6 = (TextView) findViewById(R.id.tvShowOmega6);
-        final TextView displayProteins = (TextView) findViewById(R.id.tvShowProteins);
-        final TextView displayCarbo = (TextView) findViewById(R.id.tvShowCarbo);
-        final TextView displayEnergy = (TextView) findViewById(R.id.tvShowEnergy);
-
-        displayName.getText().toString();
-    }*/
-
-    public void showGram(final Food gramFood, final int position){
+   /* public void showGram(final Food gramFood, final int position) {
         LayoutInflater inflater = LayoutInflater.from(this);
         View subView = inflater.inflate(R.layout.menu_list_item_recycler, null);
 
         final TextView showGramTv = (TextView) subView.findViewById(R.id.showGram);
-        if (gramFood != null){
+      //  final EditText gramField = (EditText) findViewById(R.id.enter_gram);
+
+        if (gramFood != null) {
             showGramTv.setText(String.valueOf(gramFood.getGram()));
         }
 
         final double gram = Double.parseDouble(showGramTv.getText().toString());
 
-        mDatabase.listGram();
+     //   String content = gramField.getText().toString();
+     //   showGramTv.setText(content);
+
         allFood.get(position).setGram(gram);
+        mDatabase.listGram();
+
+
+    }*/
+
+    private void getSearchedName(String searchTerm){
+        allFood.clear();
+        FoodDbHelper db = new FoodDbHelper(this);
+        db.getWritableDatabase();
+        Food food = null;
+        Cursor cursor = db.searchItem(searchTerm);
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            food = new Food();
+            food.setId(id);
+            food.setName(name);
+            allFood.add(food);
+        }
+        db.close();
+        productView.setAdapter(mAdapter);
     }
 
-    private void editTaskDialog(final Food food, final int position) {
+    private void editTaskDialog(final Food clickedFood, final int position) {
         LayoutInflater inflater = LayoutInflater.from(this);
         View subView = inflater.inflate(R.layout.menu_gram, null);
-
         final EditText gramField = (EditText) subView.findViewById(R.id.enter_gram);
 
-        if (food != null) {
-            gramField.setText(String.valueOf(food.getGram()));
-        }
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Unesi željenu gramažu");
+        builder.setTitle("Unesi masu u gramima");
         builder.setView(subView);
         builder.create();
 
@@ -124,16 +145,15 @@ public class BreakfastActivity extends AppCompatActivity implements MenuAdapter.
                 final double gram = Double.parseDouble(gramField.getText().toString());
 
                 if (gram <= 0) {
-                    Toast.makeText(BreakfastActivity.this, "Krivo si unio gramažu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BreakfastActivity.this, "Unio si krivu masu. Unesi broj veči od 0", Toast.LENGTH_SHORT).show();
                 } else {
-                    mDatabase.updateGram(new Food(food.getId(), gram));
-                    allFood.get(position).setGram(gram);
+                    GramHelp gramHelp = new GramHelp();
+                    gramHelp.setId_food(clickedFood.getId());
+                    gramHelp.setId_menu(value);
+                    gramHelp.setGram(gram);
+                    selectedFood.add(gramHelp);
 
-                    mAdapter.notifyDataSetChanged();
-
-                    showGram(food, position);
-
-                    Toast.makeText(BreakfastActivity.this, "Spremljeno u bazi", Toast.LENGTH_SHORT).show();
+                    //    showGram(food, position);
                 }
             }
 
@@ -141,23 +161,40 @@ public class BreakfastActivity extends AppCompatActivity implements MenuAdapter.
 
         builder.setNegativeButton("Odustani", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(BreakfastActivity.this, "Bravo odusto si", Toast.LENGTH_LONG).show();
-            }
+            public void onClick(DialogInterface dialog, int which) {}
         });
         builder.show();
     }
-
-
-
-
     @Override
-    public void editFood(Food food, int position) {
-        editTaskDialog(food, position);
+    public void editFood(Food clickedFood, int position) {
+        editTaskDialog(clickedFood, position);
     }
 
     @Override
     public void popupInfo(Food selectedItem, int position) {
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_searchbar, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                getSearchedName(newText);
+                return false;
+            }
+        });
+        return true;
+    }
+
 }

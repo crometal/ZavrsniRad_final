@@ -146,7 +146,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
             /** Determine if this is a new or existing food*/
             if (mCurrentFoodUri == null){
-                /** This is a new FOOD*/
+
                 Uri newUri = getContentResolver().insert(FoodEntry.CONTENT_URI, values);
                 if (newUri == null){
                     Toast.makeText(this, "Pogreška kod unosa", Toast.LENGTH_SHORT).show();
@@ -154,7 +154,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                     Toast.makeText(this, "Unos spremnjen", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                /** This is existing food*/
+
                 int rowsAffected = getContentResolver().update(mCurrentFoodUri, values, null, null);
 
                 if (rowsAffected == 0){
@@ -235,7 +235,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String [] projection = {
-                FoodEntry._ID,
+                FoodEntry._ID_FOODS,
                 FoodEntry.COLUMN_FOOD_NAME,
                 FoodEntry.COLUMN_FAT_TOTAL,
                 FoodEntry.COLUMN_OMEGA3,

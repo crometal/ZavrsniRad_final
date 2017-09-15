@@ -1,10 +1,8 @@
 package com.example.stjepan.zavrsnirad_v1.menu;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +15,7 @@ import android.widget.TextView;
 import com.example.stjepan.zavrsnirad_v1.R;
 import com.example.stjepan.zavrsnirad_v1.data.Food;
 import com.example.stjepan.zavrsnirad_v1.data.FoodDbHelper;
+import com.example.stjepan.zavrsnirad_v1.models.GramHelp;
 
 import java.util.List;
 
@@ -26,6 +25,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     private Context context;
     private FoodDbHelper mDatabase;
     private List<Food> foodList;
+    private List<GramHelp> gramList;
     public AdapterListener adapterListener;
 
     public MenuAdapter(Context context, List<Food> foodList, AdapterListener adapterListener) {
@@ -46,11 +46,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     public void onBindViewHolder(final MenuViewHolder holder, final int position) {
         final Food singleFood = foodList.get(position);
 
-        if(foodList.get(position).getGram() > 0) {
-            holder.row_linearlayout.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
-        }else{
-            holder.row_linearlayout.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
-        }
+      // if(singleFood.getGram() > 0) {
+      //      holder.row_linearlayout.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
+      //  }else{
+      //      holder.row_linearlayout.setBackgroundColor(ContextCompat.getColor(context, R.color.editorColorPrimary));}
+
 
         holder.foodName.setText(foodList.get(position).getName());
         holder.foodName.setOnClickListener(new View.OnClickListener() {
@@ -59,18 +59,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 popupInfoDialog(singleFood, position);
             }
         });
-
-
-
-
     }
 
     @Override
     public int getItemCount() {
         return foodList.size();
     }
-
-
 
     public void popupInfoDialog(final Food selectedItem, final int position){
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -95,7 +89,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Info o namirnici");
+        builder.setTitle("Informacije o namirnici");
         builder.setView(subView);
         builder.create();
         builder.show();
@@ -154,11 +148,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                     adapterListener.popupInfo(foodList.get(getAdapterPosition()), getAdapterPosition());
                 }
             });
-
         }
-
     }
-
 }
 
 

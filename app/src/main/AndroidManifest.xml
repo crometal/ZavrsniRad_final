@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.stjepan.zavrsnirad_v1">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".stetho.MyApplication"
+        android:label="@string/app_name">
+
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -18,23 +22,22 @@
             </intent-filter>
         </activity>
         <activity
+
             android:name=".FoodListActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
+            <intent-filter>
 
+                <!-- <action android:name="android.intent.action.MAIN"/> -->
+                <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
 
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
-        <activity
-            android:name=".EditorActivity"
-            android:parentActivityName=".FoodListActivity"
-            android:theme="@style/EditorTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FoodListActivity" />
-        </activity>
+
         <activity
             android:name=".menu.MenuActivity"
             android:parentActivityName=".MainActivity">
@@ -48,10 +51,29 @@
             android:authorities="com.example.stjepan.zavrsnirad_v1"
             android:exported="false" />
 
-        <activity android:name=".menu.LunchActivity" />
-        <activity android:name=".menu.DinnerActivity" />
+        <activity
+            android:name=".menu.LunchActivity"
+            android:noHistory="true"
+            android:parentActivityName=".menu.MenuActivity"
+
+            />
+        <activity
+            android:name=".menu.DinnerActivity"
+            android:noHistory="true"
+            android:parentActivityName=".menu.MenuActivity"/>
         <activity android:name=".TotalActivity" />
-        <activity android:name=".menu.BreakfastActivity" />
+        <activity
+            android:name=".menu.BreakfastActivity"
+            android:noHistory="true"
+            android:parentActivityName=".menu.MenuActivity"/>
+
+
+        <activity
+            android:name=".HistoryActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
+
+
 
 </manifest>

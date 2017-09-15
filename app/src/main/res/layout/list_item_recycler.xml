@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,39 +9,38 @@
     card_view:cardElevation="2dp"
     card_view:cardUseCompatPadding="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:orientation="horizontal"
         android:padding="12dp">
 
         <TextView
             android:id="@+id/food_name"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
             android:text="Ime namirnice"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            android:textColor="#000000" />
 
         <ImageView
             android:id="@+id/edit_food"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="220dp"
+            android:scaleType="fitCenter"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/pedit" />
+            android:src="@mipmap/ic_edit" />
 
         <ImageView
             android:id="@+id/delete_food"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_alignParentRight="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/pdelete" />
+            android:src="@mipmap/ic_delete" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

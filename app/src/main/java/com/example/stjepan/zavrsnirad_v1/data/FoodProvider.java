@@ -64,7 +64,7 @@ public class FoodProvider extends ContentProvider {
                 cursor = database.query(FoodEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, FoodEntry.COLUMN_FOOD_NAME + " ASC");
                 break;
             case FOOD_ID:
-                selection = FoodEntry._ID + "=?";
+                selection = FoodEntry._ID_FOODS + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
 
                 cursor = database.query(FoodEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, FoodEntry.COLUMN_FOOD_NAME + " ASC");
@@ -137,7 +137,7 @@ public class FoodProvider extends ContentProvider {
                 break;
             case FOOD_ID:
                 // Delete a single row given by the ID in the URI
-                selection = FoodEntry._ID + "=?";
+                selection = FoodEntry._ID_FOODS + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 rowsDeleted = database.delete(FoodEntry.TABLE_NAME, selection, selectionArgs);
                 break;
@@ -157,7 +157,7 @@ public class FoodProvider extends ContentProvider {
             case FOOD:
                 return updateFood(uri, contentValues, selection, selectionArgs);
             case FOOD_ID:
-                selection = FoodEntry._ID + "=?";
+                selection = FoodEntry._ID_FOODS + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 return updateFood(uri, contentValues, selection, selectionArgs);
             default:

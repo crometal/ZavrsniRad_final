@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.stjepan.zavrsnirad_v1.R;
+import com.example.stjepan.zavrsnirad_v1.TotalActivity;
 import com.example.stjepan.zavrsnirad_v1.data.Food;
 import com.example.stjepan.zavrsnirad_v1.data.FoodDbHelper;
 
@@ -25,12 +26,13 @@ public class TotalAdapter extends RecyclerView.Adapter<TotalAdapter.TotalViewHol
     private List<Food> totalFoodList;
     public MenuAdapter.AdapterListener adapterListener;
 
-    public TotalAdapter(Context context, List<Food> totalFoodList, MenuAdapter.AdapterListener adapterListener){
+    public TotalAdapter(Context context, List<Food> totalFoodList){
         this.context = context;
         this.totalFoodList = totalFoodList;
         this.adapterListener = adapterListener;
         mDatabase = new FoodDbHelper(context);
     }
+
 
     @Override
     public TotalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -51,6 +53,9 @@ public class TotalAdapter extends RecyclerView.Adapter<TotalAdapter.TotalViewHol
     @Override
     public int getItemCount() {
         return totalFoodList.size();
+    }
+
+    public interface AdapterListener {
     }
 
     public class TotalViewHolder extends RecyclerView.ViewHolder{
